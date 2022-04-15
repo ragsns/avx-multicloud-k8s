@@ -25,9 +25,9 @@ variable "avx_transit_cidr" { default = "10.0.0.0/16" }
 
 variable "node_count" { default = 2 }
 #Node size, 4x16
-variable "aws_node_size" { default = "t3a.xlarge" }
-variable "azure_node_size" { default = "Standard_B4ms" }
-variable "gcp_node_size" { default = "e2-standard-4" }
+variable "aws_node_size" { default = "m5.4xlarge" }
+variable "azure_node_size" { default = "Standard_D16_v5" }
+variable "gcp_node_size" { default = "c2-standard-16" }
 
 locals {
   azure_subscription_id = data.aviatrix_account.azure.arm_subscription_id

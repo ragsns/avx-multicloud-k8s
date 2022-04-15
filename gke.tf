@@ -1,7 +1,7 @@
 # Deploy GKE
 
 resource "google_container_cluster" "gke" {
-  name     = "gke-cluster"
+  name     = "gke-avx-cluster"
   location = var.gcp_region
   project  = local.gcp_project_id
 
@@ -33,7 +33,7 @@ resource "null_resource" "get_gke_creds" {
     label_fingerprint = google_container_cluster.gke.label_fingerprint
   }
   provisioner "local-exec" {
-    command = "gcloud container clusters get-credentials gke-cluster --region ${var.gcp_region}"
+    command = "gcloud container clusters get-credentials gke-avx-cluster --region ${var.gcp_region}"
   }
   depends_on = [
     google_container_cluster.gke

@@ -61,7 +61,7 @@ resource "aws_iam_role_policy_attachment" "AmazonEC2ContainerRegistryReadOnly" {
 }
 
 resource "aws_eks_cluster" "eks" {
-  name     = "eks-cluster"
+  name     = "eks-avx-cluster"
   role_arn = aws_iam_role.eks_cluster_role.arn
 
   vpc_config {
@@ -124,7 +124,7 @@ resource "null_resource" "get_eks_creds" {
   }
 
   provisioner "local-exec" {
-    command = "aws eks --region ${var.aws_region} update-kubeconfig --name eks-cluster"
+    command = "aws eks --region ${var.aws_region} update-kubeconfig --name eks-avx-cluster"
   }
   depends_on = [
     aws_eks_cluster.eks

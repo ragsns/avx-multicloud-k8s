@@ -1,10 +1,10 @@
 # Deploy AKS
 
 resource "azurerm_kubernetes_cluster" "aks" {
-  name                      = "aks-cluster"
+  name                      = "aks-avx-cluster"
   location                  = local.azurerm_azure_region
   resource_group_name       = var.azure_rg_name
-  dns_prefix                = "aks"
+  dns_prefix                = "aks-avx"
   private_cluster_enabled   = false
   automatic_channel_upgrade = "stable"
 
@@ -37,7 +37,7 @@ resource "null_resource" "get_aks_creds" {
     fqdn = azurerm_kubernetes_cluster.aks.fqdn
   }
   provisioner "local-exec" {
-    command = "az aks get-credentials --resource-group ${var.azure_rg_name} --name aks-cluster"
+    command = "az aks get-credentials --resource-group ${var.azure_rg_name} --name aks-avx-cluster"
   }
   depends_on = [
     azurerm_kubernetes_cluster.aks
